@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #3b3b3b;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+h2 {
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: normal;
+}
+.app {
+  width: 100vw;
+  height: 100vh;
+  padding: 1.5rem 2.5rem;
+}

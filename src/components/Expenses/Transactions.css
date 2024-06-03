@@ -1,0 +1,8 @@
+.transactions {
+  width: 55%;
+}
+.transactions-list {
+  height: 345.025px;
+  flex-shrink: 0;
+  background-color: #fff;
+}

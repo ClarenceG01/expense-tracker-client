@@ -1,0 +1,42 @@
+.total-expense {
+  background: white;
+  width: 450px;
+  height: 181px;
+  background: #9b9b9b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.total-expense_div {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.total-expense_div > * {
+  display: inline;
+}
+.total-expense_label {
+  color: #fff;
+}
+.total-expense_value {
+  color: #f4bb4a;
+}
+.total-expense_btn {
+  width: 167.647px;
+  height: 38px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #ff9595 0%, #ff4747 80%, #ff3838 100%);
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+.total-expense_btn:hover {
+  background: linear-gradient(90deg, #ff3838 0%, #ff4747 20%, #ff9595 100%);
+}

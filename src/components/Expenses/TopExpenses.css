@@ -1,0 +1,8 @@
+.top-expense {
+  width: 40%;
+}
+.top-expense-list {
+  height: 345px;
+  flex-shrink: 0;
+  background-color: #fff;
+}
