@@ -2,7 +2,61 @@
   width: 55%;
 }
 .transactions-list {
+  padding: 2rem 3rem;
   height: 345.025px;
   flex-shrink: 0;
   background-color: #fff;
+}
+.transactions-list article {
+  padding: 1rem 0;
+  border-bottom: 1px solid #9b9b9b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.transactions-list article div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+.transactions-list article div:first-child span:first-child {
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.transactions-list article div:first-child span:last-child {
+  color: #9b9b9b;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.transactions-list article div:last-child {
+  display: flex;
+  align-items: center;
+}
+.transactions-list article div:last-child > * {
+  margin-right: 0.5rem;
+}
+.transactions-list article div:last-child span {
+  color: #f4bb4a;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+}
+.delete {
+  color: rgb(248, 27, 27);
+}
+.edit {
+  color: #f4bb4a;
+}
+.icon:hover {
+  transform: scale(1.09);
 }

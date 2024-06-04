@@ -1,0 +1,21 @@
+.expense-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.expense-form__controls {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 0.5rem;
+}
+.expense-form__controls label {
+  margin-bottom: 0.2rem;
+}
+.expense-form__controls input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

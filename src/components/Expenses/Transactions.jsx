@@ -1,12 +1,14 @@
 import React from "react";
 import Card from "../UI/Card";
 import "./Transactions.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { LiaEdit } from "react-icons/lia";
 
 const Transactions = () => {
   const data = [
-    { id: 1, title: "Expense 1", date: new Date(), amount: 10 },
-    { id: 2, title: "Expense 2", date: new Date(), amount: 20 },
-    { id: 3, title: "Expense 3", date: new Date(), amount: 30 },
+    { id: 1, title: "Expense 1", date: "March 20, 2024", amount: 10 },
+    { id: 2, title: "Expense 2", date: "March 20, 2024", amount: 20 },
+    { id: 3, title: "Expense 3", date: "March 20, 2024", amount: 30 },
   ];
   return (
     <div className="transactions">
@@ -16,9 +18,13 @@ const Transactions = () => {
           <article>
             <div>
               <span>{x.title}</span>
-              <span>{x.date.toISOString()}</span>
+              <span>{x.date.toLocaleString()}</span>
             </div>
-            <div>{x.amount}</div>
+            <div>
+              <span>Ksh {x.amount}</span>
+              <LiaEdit className="edit icon" />
+              <RiDeleteBin6Line className="delete icon" />
+            </div>
           </article>
         ))}
       </Card>
