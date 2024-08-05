@@ -25,7 +25,7 @@ const Login = () => {
       .post(`${url}/login`, credentials, { withCredentials: true })
       .then((res) => {
         console.log("loading...");
-        if (res.status) {
+        if (res.status === 200) {
           navigate("/home");
         }
       })
