@@ -4,8 +4,9 @@ import Transactions from "../Expenses/Transactions";
 import TopExpense from "../Expenses/TopExpense";
 import TotalExpense from "../Expenses/TotalExpense";
 import Card from "../UI/Card";
-import baseUrl from "../../utils/baseUrl";
 import axios from "axios";
+
+const baseUrl = "https://expense-tracker-server-xdkv.onrender.com";
 
 const Home = () => {
   const [expenses, setExpenses] = useState([]);
@@ -14,13 +15,13 @@ const Home = () => {
   checkAuth();
   const fetchExpenses = async () => {
     await axios
-      .get(`${baseUrl()}/expense`, { withCredentials: true })
+      .get(`${baseUrl}/expense`, { withCredentials: true })
       .then((res) => setExpenses(res.data.recentExpenses))
       .catch((error) => console.log(error));
   };
   const fetchTotalExpense = async () => {
     await axios
-      .get(`${baseUrl()}/total`, { withCredentials: true })
+      .get(`${baseUrl}/total`, { withCredentials: true })
       .then((res) => {
         setTotal(res.data.total);
       })
@@ -28,7 +29,7 @@ const Home = () => {
   };
   const getTopExpenses = async () => {
     try {
-      const results = await axios.get(`${baseUrl()}/top`, {
+      const results = await axios.get(`${baseUrl}/top`, {
         withCredentials: true,
       });
       setTopExpenses(results.data.topExpenses);
@@ -40,7 +41,7 @@ const Home = () => {
     fetchExpenses();
     fetchTotalExpense();
     getTopExpenses();
-  }, [expenses]);
+  }, []);
   return (
     <div className="app">
       <h1>Expensify</h1>

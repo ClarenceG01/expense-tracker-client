@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./ExpenseForm.css";
 import { successToast } from "../../utils/successToast";
 import axios from "axios";
-import baseUrl from "../../utils/baseUrl";
 
+const baseUrl = "https://expense-tracker-server-xdkv.onrender.com";
 const ExpenseForm = ({ setIsOpen }) => {
-  const url = baseUrl();
   const [expense, setExpense] = useState({
     title: "",
     amount: "",
@@ -33,7 +32,7 @@ const ExpenseForm = ({ setIsOpen }) => {
       notes: expense.notes,
     };
     axios
-      .post(`${url}/expense`, newExpense, {
+      .post(`${baseUrl}/expense`, newExpense, {
         withCredentials: true,
       })
       .then((res) => {
