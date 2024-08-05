@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./login.css";
 import baseUrl from "../../utils/baseUrl";
 import axios from "axios";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [visible, setVisible] = useState(false);
   const changeHandler = (e) => {
     setCredentials((prev) => ({
       ...prev,
@@ -44,15 +46,23 @@ const Login = () => {
             onChange={changeHandler}
           />
         </div>
-        <div className="login-form__controlls">
+        <div className="login-form__controlls pwd-control">
           <label htmlFor="password">Password:</label>
           <input
-            type="password"
+            type={visible ? "text" : "password"}
             name="password"
             id="password"
             value={credentials.password}
             onChange={changeHandler}
           />
+          {visible ? (
+            <GoEye className="eye-icon" onClick={() => setVisible(!visible)} />
+          ) : (
+            <GoEyeClosed
+              className="eye-icon"
+              onClick={() => setVisible(!visible)}
+            />
+          )}
         </div>
         <div className="btn-link">
           <button>Login</button>

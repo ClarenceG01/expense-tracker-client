@@ -22,11 +22,11 @@ const Transactions = ({ expenses }) => {
     }
   };
   const renderExpenses = () => {
-    return currentExpenses.map((expense) => (
-      <article key={expense.id}>
+    return currentExpenses.map((expense, index) => (
+      <article key={index}>
         <div>
           <span>{expense.title}</span>
-          <span>{expense.date.toLocaleString()}</span>
+          <span>{expense.userDate}</span>
         </div>
         <div>
           <span>Ksh {expense.amount}</span>

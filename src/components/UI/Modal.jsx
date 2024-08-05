@@ -3,7 +3,7 @@ import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import ExpenseForm from "../Expenses/ExpenseForm";
 
-const Modal = ({ setIsOpen, onAddExpenseHandler }) => {
+const Modal = ({ setIsOpen }) => {
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -15,10 +15,7 @@ const Modal = ({ setIsOpen, onAddExpenseHandler }) => {
           <button className="closeBtn" onClick={() => setIsOpen(false)}>
             <RiCloseLine />
           </button>
-          <ExpenseForm
-            onAddExpenseHandler={onAddExpenseHandler}
-            setIsOpen={setIsOpen}
-          />
+          <ExpenseForm setIsOpen={setIsOpen} />
         </div>
       </div>
     </>

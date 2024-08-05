@@ -5,4 +5,30 @@
   height: 345px;
   flex-shrink: 0;
   background-color: #fff;
+  padding: 20px 2rem;
+}
+.expense-div {
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.expense-div:last-child {
+  border: none;
+}
+.expense-div p:first-child {
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.expense-div p:last-child {
+  color: #9b9b9b;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

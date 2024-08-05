@@ -80,3 +80,16 @@
   box-shadow: 0 10px 20px -10px rgba(76, 175, 80, 0.6);
   transform: scale(1.04);
 }
+.disabled {
+  margin-top: 10px;
+  cursor: not-allowed;
+  font-weight: 500;
+  padding: 11px 28px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  background: #4caf50;
+  transition: all 0.25s ease;
+  opacity: 0.5;
+}
