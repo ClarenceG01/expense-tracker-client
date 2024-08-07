@@ -41,7 +41,7 @@ const Home = () => {
     fetchExpenses();
     fetchTotalExpense();
     getTopExpenses();
-  }, []);
+  }, [expenses]);
   return (
     <div className="app">
       <h1>Expensify</h1>
