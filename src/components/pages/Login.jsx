@@ -20,17 +20,19 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      console.log("Form submitted, about to send request");
       const res = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BASE_URL}/login`,
         credentials,
         { withCredentials: true }
       );
       if (res.status === 200) {
-        console.log("Before navigating", res);
+        console.log("Login successful, about to navigate", res);
         navigate("/home");
+        console.log("After navigate");
       }
     } catch (err) {
-      console.log(err);
+      console.log("Error during login", err);
     }
   };
 
