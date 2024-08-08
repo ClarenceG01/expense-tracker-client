@@ -79,7 +79,7 @@ const Login = () => {
           )}
         </div>
         <div className="btn-link">
-          <button>Login</button>
+          <button disabled={loading}>{loading ? "Loading..." : "Login"}</button>
           <NavLink to="/register" className="register-navlink">
             Register
           </NavLink>
