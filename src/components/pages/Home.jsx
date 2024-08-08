@@ -6,8 +6,6 @@ import TotalExpense from "../Expenses/TotalExpense";
 import Card from "../UI/Card";
 import axios from "axios";
 
-const baseUrl = "https://expense-tracker-server-xdkv.onrender.com";
-
 const Home = () => {
   const [expenses, setExpenses] = useState([]);
   const [total, setTotal] = useState(null);
@@ -15,13 +13,17 @@ const Home = () => {
   checkAuth();
   const fetchExpenses = async () => {
     await axios
-      .get(`${baseUrl}/expense`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_REACT_APP_BASE_URL}/expense`, {
+        withCredentials: true,
+      })
       .then((res) => setExpenses(res.data.recentExpenses))
       .catch((error) => console.log(error));
   };
   const fetchTotalExpense = async () => {
     await axios
-      .get(`${baseUrl}/total`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_REACT_APP_BASE_URL}/total`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setTotal(res.data.total);
       })
@@ -29,9 +31,12 @@ const Home = () => {
   };
   const getTopExpenses = async () => {
     try {
-      const results = await axios.get(`${baseUrl}/top`, {
-        withCredentials: true,
-      });
+      const results = await axios.get(
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/top`,
+        {
+          withCredentials: true,
+        }
+      );
       setTopExpenses(results.data.topExpenses);
     } catch (error) {
       console.log(error);

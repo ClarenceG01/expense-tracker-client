@@ -4,7 +4,6 @@ import "./login.css";
 import axios from "axios";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
-const baseUrl = "https://expense-tracker-server-xdkv.onrender.com";
 const Login = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -22,9 +21,12 @@ const Login = () => {
     e.preventDefault();
     navigate("/home");
     await axios
-      .post(`${baseUrl}/login`, credentials, { withCredentials: true })
+      .post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/login`, credentials, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
+          console.log(res);
           navigate("/home");
         }
       })

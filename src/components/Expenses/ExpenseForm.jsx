@@ -3,7 +3,6 @@ import "./ExpenseForm.css";
 import { successToast } from "../../utils/successToast";
 import axios from "axios";
 
-const baseUrl = "https://expense-tracker-server-xdkv.onrender.com";
 const ExpenseForm = ({ setIsOpen }) => {
   const [expense, setExpense] = useState({
     title: "",
@@ -32,7 +31,7 @@ const ExpenseForm = ({ setIsOpen }) => {
       notes: expense.notes,
     };
     axios
-      .post(`${baseUrl}/expense`, newExpense, {
+      .post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/expense`, newExpense, {
         withCredentials: true,
       })
       .then((res) => {
