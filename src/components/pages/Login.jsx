@@ -19,19 +19,21 @@ const Login = () => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
-    navigate("/home");
-    await axios
-      .post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/login`, credentials, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          navigate("/home");
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/login`,
+        credentials,
+        { withCredentials: true }
+      );
+      if (res.status === 200) {
+        console.log("Before navigating", res);
+        navigate("/home");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
     <div className="login">
       <h2>Expensify</h2>
