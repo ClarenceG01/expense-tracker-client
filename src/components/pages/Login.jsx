@@ -32,7 +32,22 @@ const Login = () => {
         console.log("After navigate");
       }
     } catch (err) {
-      console.log("Error during login", err);
+      console.error("Error during login", err);
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error(
+          "Server responded with status code:",
+          err.response.status
+        );
+        console.error("Server response data:", err.response.data);
+      } else if (err.request) {
+        // The request was made but no response was received
+        console.error("No response received from the server");
+      } else {
+        // Something else happened while setting up the request
+        console.error("Error setting up the request:", err.message);
+      }
     }
   };
 
