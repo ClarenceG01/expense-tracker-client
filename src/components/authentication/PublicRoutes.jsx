@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { checkAuth } from "../../utils/checkAuth";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const PublicRoutes = () => {
+  const navigate = useNavigate();
   const isToken = checkAuth();
-  return isToken ? <Navigate to="/home" /> : <Outlet />;
+
+  useEffect(() => {
+    if (isToken) {
+      navigate("/");
+    }
+  }, [isToken, navigate]);
+  return isToken ? null : <Outlet />;
 };
 
 export default PublicRoutes;
