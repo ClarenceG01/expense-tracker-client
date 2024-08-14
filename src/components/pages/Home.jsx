@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { checkAuth } from "../../utils/checkAuth";
 import Transactions from "../Expenses/Transactions";
 import TopExpense from "../Expenses/TopExpense";
@@ -46,7 +46,7 @@ const Home = () => {
     fetchExpenses();
     fetchTotalExpense();
     getTopExpenses();
-  }, [expenses]);
+  }, []);
   return (
     <div className="app">
       <h1>Expensify</h1>

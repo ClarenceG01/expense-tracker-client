@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { checkAuth } from "../../utils/checkAuth";
+import { checkAuth } from "../utils/checkAuth";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const PrivateRoutes = () => {
@@ -9,6 +9,8 @@ const PrivateRoutes = () => {
   useEffect(() => {
     if (!isToken) {
       navigate("/");
+    } else {
+      navigate("/home");
     }
   }, [isToken, navigate]);
   return isToken ? <Outlet /> : null;

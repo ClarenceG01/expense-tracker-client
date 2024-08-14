@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import "./ExpenseForm.css";
 import { successToast } from "../../utils/successToast";
 import axios from "axios";
 
+export const NewExpenseContext = createContext();
 const ExpenseForm = ({ setIsOpen }) => {
   const [expense, setExpense] = useState({
     title: "",
@@ -36,6 +37,7 @@ const ExpenseForm = ({ setIsOpen }) => {
       })
       .then((res) => {
         if (res.status === 200) {
+          setAddeddExpense(7000);
           successToast("Expense added successfully");
         }
       })
