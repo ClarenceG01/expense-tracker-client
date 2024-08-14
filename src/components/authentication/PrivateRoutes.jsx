@@ -8,7 +8,7 @@ const PrivateRoutes = () => {
 
   useEffect(() => {
     if (!isToken) {
-      navigate("/login");
+      navigate("/");
     }
   }, [isToken, navigate]);
   return isToken ? <Outlet /> : null;

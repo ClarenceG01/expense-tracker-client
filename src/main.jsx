@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <React.StrictMode>
       <Link to="/"></Link>
-      <Link to="/login"></Link>
+      <Link to="/home"></Link>
       <Link to="/register"></Link>
       <App />
     </React.StrictMode>

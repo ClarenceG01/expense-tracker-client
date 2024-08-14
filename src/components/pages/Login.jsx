@@ -32,7 +32,7 @@ const Login = () => {
         .then((res) => {
           if (res.status === 200) {
             console.log("Login successful, about to navigate", res);
-            navigate("/");
+            navigate("/home");
             console.log("After navigate");
           }
         })

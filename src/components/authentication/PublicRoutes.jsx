@@ -8,7 +8,7 @@ const PublicRoutes = () => {
 
   useEffect(() => {
     if (isToken) {
-      navigate("/");
+      navigate("/home");
     }
   }, [isToken, navigate]);
   return isToken ? null : <Outlet />;
