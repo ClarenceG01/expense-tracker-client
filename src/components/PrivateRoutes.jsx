@@ -1,19 +1,12 @@
-import { useEffect } from "react";
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
 import { checkAuth } from "../utils/checkAuth";
-import { Outlet, useNavigate } from "react-router-dom";
 
+const isAuthenticated = await checkAuth();
+
+console.log(isAuthenticated);
 const PrivateRoutes = () => {
-  const navigate = useNavigate();
-  const isToken = checkAuth();
-
-  useEffect(() => {
-    if (!isToken) {
-      navigate("/");
-    } else {
-      navigate("/home");
-    }
-  }, [isToken, navigate]);
-  return isToken ? <Outlet /> : null;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ExpenseForm.css";
-import { successToast } from "../../utils/successToast";
-import axios from "axios";
+import { DashboardContext } from "../context/DashboardContext";
 
 const ExpenseForm = ({ setIsOpen }) => {
+  const { addExpense } = useContext(DashboardContext);
+
   const [expense, setExpense] = useState({
     title: "",
     amount: "",
@@ -17,7 +18,7 @@ const ExpenseForm = ({ setIsOpen }) => {
       [name]: value,
     }));
   };
-  const submitExpense = (e) => {
+  const submitExpense = async (e) => {
     e.preventDefault();
     const date = new Date(expense.userDate).toLocaleDateString("en-Us", {
       year: "numeric",
@@ -30,16 +31,7 @@ const ExpenseForm = ({ setIsOpen }) => {
       userDate: date,
       notes: expense.notes,
     };
-    axios
-      .post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/expense`, newExpense, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          successToast("Expense added successfully");
-        }
-      })
-      .catch((error) => console.log(error));
+    await addExpense(newExpense);
     setIsOpen(false);
   };
   const isValid =

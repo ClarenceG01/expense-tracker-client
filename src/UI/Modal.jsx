@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
-import ExpenseForm from "../Expenses/ExpenseForm";
+import ExpenseForm from "../components/ExpenseForm";
 
 const Modal = ({ setIsOpen }) => {
   return (
