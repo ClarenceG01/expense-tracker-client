@@ -22,6 +22,9 @@ module.exports = {
         cardShadow:"rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;",
         circleShadow:"0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       },
+      animation:{
+        fastPulse:"pulse 0.5s linear infinite",
+      },
     },
   },
   plugins: [
