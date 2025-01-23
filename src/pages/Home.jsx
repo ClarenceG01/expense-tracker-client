@@ -11,14 +11,16 @@ const Home = () => {
     return <p>Loading...</p>;
   }
   return (
-    <div className="font-poppins py-2 px-4 md:px-16 bg-gray-200">
+    <div className="font-poppins py-2 px-4 md:px-16 bg-gray-200 h-max md:h-screen">
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
           <TotalExpense total={total} />
-          <Transactions expenses={expenses} />
-          <TopExpense expenses={expenses} />
+          <div className="flex flex-col md:flex-row md:justify-between gap-8">
+            <Transactions expenses={expenses} />
+            <TopExpense expenses={expenses} />
+          </div>
         </div>
       )}
     </div>

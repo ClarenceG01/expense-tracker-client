@@ -8,7 +8,7 @@ const TopExpense = ({ expenses }) => {
   expenses = expenses.slice(0, 5);
 
   return (
-    <Card className=" bg-white py-4 px-6">
+    <Card className=" bg-white py-4 px-6 md:w-1/2">
       <h2 className="font-inter font-bold text-black text-xl my-2">
         Top Expenses
       </h2>

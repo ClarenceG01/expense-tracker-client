@@ -10,7 +10,9 @@ const Modal = ({ setIsOpen }) => {
       <div className="centered">
         <div className="modal">
           <div className="modalHeader">
-            <h5 className="heading">Add Expense</h5>
+            <h5 className="text-center font-inter font-bold text-black text-xl my-2">
+              Add Expense
+            </h5>
           </div>
           <button className="closeBtn" onClick={() => setIsOpen(false)}>
             <RiCloseLine />
