@@ -1,81 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, Navigate } from "react-router-dom";
-
 import axios from "axios";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { errorToast } from "../utils/errorToast";
 import { successToast } from "../utils/successToast";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
-  });
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const changeHandler = (e) => {
-    setCredentials((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    console.log(credentials);
+  const submitHandler = async (data) => {
     try {
       setLoading(true);
-      console.log("Loading...");
-      await axios
-        .post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/login`, credentials, {
+      const res = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/login`,
+        data,
+        {
           withCredentials: true,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            successToast("Login successful");
-            console.log("Navigate to home");
-            window.location.href = "/home";
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          errorToast(error.response.data.message);
-        })
-        .finally(() => {
-          setLoading(false);
-          console.log("Loading complete");
-        });
+        }
+      );
+      if (res.status === 200) {
+        successToast("Login successful");
+        navigate("/home");
+      } else {
+        errorToast("Login failed");
+      }
     } catch (err) {
-      console.log("Error during login", err);
-      errorToast(err.response.data.message);
+      console.log(err);
+      errorToast(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <div className="bg-primary h-screen flex flex-col  items-center justify-center relative px-4">
-      <h2 class="font-bold text-2xl absolute top-3">Expensify</h2>
-      <form className=" w-[90%] md:w-1/2 lg:w-1/3" onSubmit={submitHandler}>
+      <h2 className="font-bold text-2xl absolute top-3">Expensify</h2>
+      <form
+        className=" w-[90%] md:w-1/2 lg:w-1/3"
+        onSubmit={handleSubmit(submitHandler)}
+      >
         <div className="mb-2 flex flex-col">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
+            {...register("username")}
             name="username"
             id="username"
             className="border-1 border-gray-500 rounded-sm py-1 px-2"
-            value={credentials.username}
-            onChange={changeHandler}
           />
         </div>
         <div className="mb-2 flex flex-col relative">
           <label htmlFor="password">Password:</label>
           <input
             type={visible ? "text" : "password"}
+            {...register("password")}
             name="password"
             id="password"
             className="border-1 border-gray-500 rounded-sm py-1 px-2"
-            value={credentials.password}
-            onChange={changeHandler}
           />
           {visible ? (
             <GoEye

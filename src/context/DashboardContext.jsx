@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import axios from "axios";
 
 export const DashboardContext = createContext();
@@ -37,6 +37,7 @@ export const DashboardProvider = ({ children }) => {
         `${import.meta.env.VITE_REACT_APP_BASE_URL}/dashboard`,
         { withCredentials: true }
       );
+      console.log(response);
       setExpenses(response.data.recentExpenses);
       setTotal(response.data.total);
       setTopExpenses(response.data.topExpenses);
@@ -47,10 +48,6 @@ export const DashboardProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
   return (
     <DashboardContext.Provider
       value={{
@@ -60,8 +57,8 @@ export const DashboardProvider = ({ children }) => {
         loading,
         error,
         setExpenses,
-        fetchDashboardData,
         addExpense,
+        fetchDashboardData,
       }}
     >
       {children}
