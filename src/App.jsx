@@ -5,13 +5,16 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PublicRoutes from "./components/PublicRoutes";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Signup />} />
+        <Route element={<PublicRoutes />}>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Signup />} />
+        </Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/home" element={<Home />} />
         </Route>

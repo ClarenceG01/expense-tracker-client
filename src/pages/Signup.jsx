@@ -26,8 +26,8 @@ const Signup = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          successToast("Login successfull");
-          navigate("/home");
+          successToast("Registered successfully. Login to continue");
+          navigate("/");
         }
       })
       .catch((err) => {
