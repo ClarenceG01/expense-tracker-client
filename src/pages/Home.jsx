@@ -16,7 +16,7 @@ const Home = () => {
 
   async function handleLogout() {
     try {
-      const res = await fetch("/api/logout", {
+      const res = await fetch("/logout", {
         method: "POST",
         credentials: "include",
       });
