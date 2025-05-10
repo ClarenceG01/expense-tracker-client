@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { checkAuth } from "../utils/checkAuth";
+import Navbar from "./Navbar";
 
 const PrivateRoutes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,7 +26,14 @@ const PrivateRoutes = () => {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated ? (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  ) : (
+    <Navigate to="/" />
+  );
 };
 
 export default PrivateRoutes;

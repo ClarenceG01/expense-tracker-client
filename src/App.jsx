@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PublicRoutes from "./components/PublicRoutes";
+import AllExpenses from "./components/AllExpenses";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/all-expenses" element={<AllExpenses />} />
         </Route>
       </Routes>
       <ToastContainer />

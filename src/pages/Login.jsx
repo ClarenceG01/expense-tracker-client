@@ -7,12 +7,16 @@ import { successToast } from "../utils/successToast";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, watch, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const submitHandler = async (data) => {
+    // Prevent form submission if loading and no username or password
+    if (loading || !data.username || !data.password) {
+      return errorToast("Please fill in all fields", "empty-fields");
+    }
     try {
       setLoading(true);
       const res = await axios.post(
@@ -23,13 +27,11 @@ const Login = () => {
         }
       );
       if (res.status === 200) {
-        successToast("Login successful");
+        successToast("Login successful", "login-success");
         navigate("/home");
-      } else {
-        errorToast("Login failed");
       }
     } catch (err) {
-      errorToast("Login failed");
+      errorToast(err.response?.data.message || "login-failed");
     } finally {
       setLoading(false);
     }
@@ -72,10 +74,13 @@ const Login = () => {
             />
           )}
         </div>
-        <div className="btn-link">
+        <div className="flex flex-col items-center">
           <button
-            disabled={loading}
-            className="bg-gradient-to-r from-custom-pink-light via-custom-pink to-custom-pink-dark py-1 px-4 rounded-lg text-white text-xl my-2 hover:scale-110"
+            className={`bg-gradient-to-t from-custom-pink-light via-custom-pink to-custom-pink-dark py-1 px-4 rounded-lg text-white text-xl my-2 hover:scale-110 ${
+              loading || !watch("username") || !watch("password")
+                ? "cursor-not-allowed opacity-50"
+                : "cursor-pointer"
+            }`}
           >
             {loading ? "Loading..." : "Login"}
           </button>

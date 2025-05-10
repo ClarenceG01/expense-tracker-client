@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-export const errorToast = (message) => {
+export const errorToast = (message, id) => {
   toast.error(message, {
     position: "top-right",
     autoClose: 5000,
@@ -9,5 +9,9 @@ export const errorToast = (message) => {
     draggable: true,
     progress: undefined,
     theme: "light",
+    toastId: id,
+    onClose: () => {
+      toast.dismiss(id);
+    },
   });
 };

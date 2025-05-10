@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-export const successToast = (message) => {
+export const successToast = (message, id) => {
   toast.success(message, {
     position: "top-right",
     autoClose: 5000,
@@ -9,5 +9,9 @@ export const successToast = (message) => {
     draggable: true,
     progress: undefined,
     theme: "light",
+    toastId: id,
+    onClose: () => {
+      toast.dismiss(id);
+    },
   });
 };

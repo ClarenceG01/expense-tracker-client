@@ -1,10 +1,29 @@
 import React from "react";
 import Card from "../UI/Card";
 
+const renderExpenses = (expenses) => {
+  if (expenses.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-32">
+        <h2 className="text-gray-500 text-lg">No recent Expense available</h2>
+      </div>
+    );
+  }
+  return expenses.map((expenses) => (
+    <div
+      className="mb-4 flex flex-row justify-between py-4 border-gray-200 border-b"
+      key={expenses._id}
+    >
+      <p>{expenses.title}</p>
+      <p>
+        <span className="text-gray-600 mr-2">Ksh</span>
+        {expenses.amount}
+      </p>
+    </div>
+  ));
+};
 const TopExpense = ({ expenses }) => {
-  // sort this array of objects by amount in descending order
   expenses.sort((a, b) => b.amount - a.amount);
-  // get the top 5 expenses
   expenses = expenses.slice(0, 5);
 
   return (
@@ -12,20 +31,7 @@ const TopExpense = ({ expenses }) => {
       <h2 className="font-inter font-bold text-black text-xl my-2">
         Top Expenses
       </h2>
-      <div>
-        {expenses.map((expenses) => (
-          <div
-            className="mb-4 flex flex-row justify-between py-4 border-gray-200 border-b"
-            key={expenses._id}
-          >
-            <p>{expenses.title}</p>
-            <p>
-              <span className="text-gray-600 mr-2">Ksh</span>
-              {expenses.amount}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div>{renderExpenses(expenses)}</div>
     </Card>
   );
 };
