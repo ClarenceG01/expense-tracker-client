@@ -16,10 +16,13 @@ const Home = () => {
 
   async function handleLogout() {
     try {
-      const res = await fetch("/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
       const data = await res.json();
       successToast(data.message);
       setTimeout(() => {
