@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { errorToast } from "../utils/errorToast";
@@ -29,8 +29,7 @@ const Login = () => {
         errorToast("Login failed");
       }
     } catch (err) {
-      console.log(err);
-      errorToast(err.response?.data?.message || "Login failed");
+      errorToast("Login failed");
     } finally {
       setLoading(false);
     }

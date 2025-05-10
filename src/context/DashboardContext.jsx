@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
+import { errorToast } from "../utils/errorToast";
 
 export const DashboardContext = createContext();
 
@@ -9,6 +10,7 @@ export const DashboardProvider = ({ children }) => {
   const [topExpenses, setTopExpenses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
 
   const addExpense = async (newExpense) => {
     try {
@@ -19,14 +21,13 @@ export const DashboardProvider = ({ children }) => {
       );
       if (response.status === 200) {
         // Add the new expense to the existing state
-        console.log(newExpense);
         setExpenses((prevExpenses) => [newExpense, ...prevExpenses]);
 
         // Update the total expense locally
         setTotal((prevTotal) => prevTotal + Number(newExpense.amount));
       }
     } catch (err) {
-      console.error("Error adding expense:", err);
+      errorToast("Error adding expense");
     }
   };
 
@@ -37,12 +38,13 @@ export const DashboardProvider = ({ children }) => {
         `${import.meta.env.VITE_REACT_APP_BASE_URL}/dashboard`,
         { withCredentials: true }
       );
-      console.log(response);
+      
       setExpenses(response.data.recentExpenses);
       setTotal(response.data.total);
       setTopExpenses(response.data.topExpenses);
+      setUser(response.data.username);
     } catch (err) {
-      setError(err || "Error fetching data");
+      setError("Error fetching data");
     } finally {
       setLoading(false);
     }
@@ -54,6 +56,7 @@ export const DashboardProvider = ({ children }) => {
         expenses,
         total,
         topExpenses,
+        user,
         loading,
         error,
         setExpenses,

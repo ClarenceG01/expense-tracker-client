@@ -9,15 +9,15 @@ const PublicRoutes = () => {
     const verifyUser = async () => {
       try {
         const authStatus = await checkAuth();
-        console.log(authStatus);
+
         setIsAuthenticated(authStatus);
       } catch (error) {
         setIsAuthenticated(false);
       }
     };
-	verifyUser()
+    verifyUser();
   }, []);
-  return isAuthenticated ? <Navigate to='/home' />: <Outlet />
+  return isAuthenticated ? <Navigate to="/home" /> : <Outlet />;
 };
 
 export default PublicRoutes;

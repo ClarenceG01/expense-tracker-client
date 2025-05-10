@@ -5,7 +5,7 @@ import Modal from "../UI/Modal";
 const TotalExpense = ({ total }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <Card className="bg-primary py-4 flex flex-col items-center rounded-lg mb-4">
+    <Card className="bg-gray-500 py-4 flex flex-col items-center rounded-lg mb-4">
       <div className="text-3xl mb-2">
         <span className="text-white">Total: </span>
         <span className="text-secondary">Ksh {total}</span>
