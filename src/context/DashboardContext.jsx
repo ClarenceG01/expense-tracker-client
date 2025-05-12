@@ -25,9 +25,10 @@ export const DashboardProvider = ({ children }) => {
 
         // Update the total expense locally
         setTotal((prevTotal) => prevTotal + Number(newExpense.amount));
+        return response;
       }
     } catch (err) {
-      errorToast("Error adding expense");
+      return errorToast("Error adding expense");
     }
   };
 
@@ -38,7 +39,7 @@ export const DashboardProvider = ({ children }) => {
         `${import.meta.env.VITE_REACT_APP_BASE_URL}/dashboard`,
         { withCredentials: true }
       );
-      
+
       setExpenses(response.data.recentExpenses);
       setTotal(response.data.total);
       setTopExpenses(response.data.topExpenses);

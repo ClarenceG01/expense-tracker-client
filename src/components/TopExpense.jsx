@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../UI/Card";
 
 const renderExpenses = (expenses) => {
+  console.log("expenses", expenses);
   if (expenses.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-32">
@@ -9,15 +10,15 @@ const renderExpenses = (expenses) => {
       </div>
     );
   }
-  return expenses.map((expenses) => (
+  return expenses.map((expense) => (
     <div
+      key={expense._id}
       className="mb-4 flex flex-row justify-between py-4 border-gray-200 border-b"
-      key={expenses._id}
     >
-      <p>{expenses.title}</p>
+      <p>{expense.title}</p>
       <p>
         <span className="text-gray-600 mr-2">Ksh</span>
-        {expenses.amount}
+        {expense.amount}
       </p>
     </div>
   ));

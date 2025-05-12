@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./ExpenseForm.css";
 import { DashboardContext } from "../context/DashboardContext";
+import { errorToast } from "../utils/errorToast";
+import { successToast } from "../utils/successToast";
 
 const ExpenseForm = ({ setIsOpen }) => {
   const { addExpense } = useContext(DashboardContext);
@@ -19,20 +21,40 @@ const ExpenseForm = ({ setIsOpen }) => {
     }));
   };
   const submitExpense = async (e) => {
-    e.preventDefault();
-    const date = new Date(expense.userDate).toLocaleDateString("en-Us", {
-      year: "numeric",
-      month: "long",
-      day: "2-digit",
-    });
-    const newExpense = {
-      title: expense.title,
-      amount: expense.amount,
-      userDate: date,
-      notes: expense.notes,
-    };
-    await addExpense(newExpense);
-    setIsOpen(false);
+    try {
+      e.preventDefault();
+      const date = new Date(expense.userDate).toLocaleDateString("en-Us", {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+      });
+      const newExpense = {
+        title: expense.title,
+        amount: expense.amount,
+        userDate: date,
+        notes: expense.notes,
+      };
+      const res = await addExpense(newExpense);
+      if (res.status === 200) {
+        setExpense({
+          title: "",
+          amount: "",
+          userDate: "",
+          notes: "",
+        });
+        successToast("Expense added successfully", "add-expense");
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 5000);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+      errorToast(
+        "Something went wrong. Please try again later.",
+        "add-expense"
+      );
+    }
   };
   const isValid =
     expense.title !== "" && expense.amount !== "" && expense.date !== "";

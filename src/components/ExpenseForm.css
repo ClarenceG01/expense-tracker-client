@@ -14,7 +14,7 @@
 .expense-form__controls label {
   margin-bottom: 0.2rem;
 }
-.expense-form__controls input {
+.expense-form__controls input, textarea {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
